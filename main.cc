@@ -6,7 +6,7 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_opengl.h>
 
-//#include "chip8.hh"
+#include "chip8.hh"
 
 
 /* important globals */
@@ -19,8 +19,7 @@ bool CreateWindow() {
     /* gimme muh window */
 	if( SDL_Init(SDL_INIT_EVERYTHING) < 0 ) {
 		return false; 
-	} else if(SDL_CreateWindow("CRUS4D3R CHIP-8", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 
-	                           width, height, SDL_WINDOW_OPENGL) == NULL) {
+	} else if(SDL_CreateWindow("CRUS4D3R CHIP-8", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, SDL_WINDOW_OPENGL) == NULL) {
 		return false; 
 	} 
 
@@ -42,12 +41,16 @@ bool CreateWindow() {
 	return true;
 }
 
+void Chip8RunLoop() {
+
+}
 
 
 int main(int argc, char **argv) {
     CreateWindow();
-    // testing for window creation this will go away 
-    std::this_thread::sleep_for(std::chrono::seconds(10));
-    //
+    Chip8* chip8emu = new Chip8();
+
+
     SDL_Quit(); 
+    delete chip8emu;
 }
